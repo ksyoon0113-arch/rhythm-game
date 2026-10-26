@@ -1,0 +1,9 @@
+# 저작권이 있는 음원은 GitHub에 올리지 않습니다
+assets/songs/*.mp3
+assets/songs/*.ogg
+assets/songs/*.wav
+assets/songs/*.m4a
+
+.DS_Store
+node_modules/
+*.pt

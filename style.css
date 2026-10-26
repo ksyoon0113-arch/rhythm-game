@@ -1,0 +1,71 @@
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+:root {
+  --bg: #0d0f1a;
+  --panel: #171a2b;
+  --text: #f2f4ff;
+  --muted: #8b90b0;
+  --accent: #6c8cff;
+}
+
+html, body { height: 100%; background: var(--bg); color: var(--text);
+  font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif; }
+
+#app { max-width: 1000px; margin: 0 auto; min-height: 100%; padding: 16px; }
+#screen-select, #screen-result { max-width: 560px; margin: 0 auto; }
+
+.screen { display: none; }
+.screen.active { display: block; }
+
+h1 { text-align: center; font-size: 28px; margin-top: 12px; }
+.sub { text-align: center; color: var(--muted); margin: 6px 0 18px; font-size: 14px; }
+.hint { text-align: center; color: var(--muted); font-size: 13px; margin-top: 8px; line-height: 1.5; }
+
+#song-list { display: grid; gap: 10px; }
+.song {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--panel); border: 2px solid transparent; border-radius: 14px;
+  padding: 14px 16px; cursor: pointer; text-align: left; color: var(--text); width: 100%;
+  transition: transform .1s, border-color .15s;
+}
+.song:hover { transform: translateY(-2px); }
+.song.on { border-color: var(--c, var(--accent)); box-shadow: 0 0 16px -4px var(--c, var(--accent)); }
+.song .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--c, var(--accent)); flex: none; }
+.song .t { font-weight: 700; font-size: 17px; }
+.song .a { color: var(--muted); font-size: 13px; margin-top: 2px; }
+.song .tag { margin-left: auto; font-size: 11px; color: #ffb4b4; text-align: right; }
+
+.options { margin: 18px 0; display: grid; gap: 12px; background: var(--panel); padding: 14px 16px; border-radius: 14px; }
+.opt { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 14px; }
+.btn-group { display: flex; gap: 6px; }
+
+button { font: inherit; }
+.btn-group button, #btn-menu, .quit, button.small {
+  background: #232744; color: var(--text); border: 1px solid #33385e; border-radius: 8px; padding: 7px 12px; cursor: pointer;
+}
+button.small:disabled { color: var(--muted); cursor: wait; }
+.btn-group button.on { background: var(--accent); border-color: var(--accent); }
+
+button.primary {
+  width: 100%; padding: 14px; font-size: 18px; font-weight: 700; border: 0; border-radius: 12px;
+  background: var(--accent); color: #fff; cursor: pointer;
+}
+button.primary:disabled { background: #2a2f4d; color: var(--muted); cursor: not-allowed; }
+.status { text-align: center; color: var(--muted); font-size: 13px; margin-top: 10px; min-height: 18px; line-height: 1.5; }
+
+#screen-game { position: relative; text-align: center; }
+#game { width: 100%; max-width: 960px; max-height: 88vh; aspect-ratio: 16 / 9; background: #05060d;
+  border-radius: 12px; display: block; margin: 0 auto; }
+.quit { position: absolute; top: 8px; right: 8px; font-size: 12px; opacity: .7; }
+
+/* 웹캠 입력용 video: 화면엔 안 보이지만 계속 재생돼야 해서 숨기지 않고 작게 둡니다 */
+#cam { position: fixed; left: 0; top: 0; width: 2px; height: 2px; opacity: 0; pointer-events: none; }
+
+#r-grade { font-size: 96px; font-weight: 900; margin: 8px 0; color: var(--accent); }
+#screen-result { text-align: center; padding-top: 30px; }
+#r-score { font-size: 28px; font-weight: 700; margin-bottom: 14px; }
+#r-table { margin: 0 auto 22px; border-collapse: collapse; min-width: 240px; }
+#r-table td { padding: 5px 14px; border-bottom: 1px solid #262a45; }
+#r-table td:last-child { text-align: right; font-weight: 700; }
+.row { display: flex; gap: 10px; }
+.row .primary { flex: 1; }

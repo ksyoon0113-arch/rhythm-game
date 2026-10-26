@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI주간 리듬게임</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.17.3/dist/ort.min.js"></script>
+</head>
+<body>
+  <main id="app">
+
+    <!-- 곡 선택 화면 -->
+    <section id="screen-select" class="screen active">
+      <h1>🎵 AI주간 리듬게임</h1>
+      <p class="sub">곡과 게임 모드를 고르고 시작해요!</p>
+
+      <div id="song-list"></div>
+
+      <div class="options">
+        <div class="opt">
+          <span>게임 모드</span>
+          <div id="mode-buttons" class="btn-group" style="flex-wrap:wrap;justify-content:flex-end">
+            <button data-mode="cam" class="on">댄스 (웹캠)</button>
+            <button data-mode="dkey">댄스 (키보드)</button>
+            <button data-mode="notes">노트 (D F J K)</button>
+          </div>
+        </div>
+        <div class="opt">
+          <span>난이도</span>
+          <div id="diff-buttons" class="btn-group">
+            <button data-diff="easy">쉬움</button>
+            <button data-diff="normal" class="on">보통</button>
+            <button data-diff="hard">어려움</button>
+          </div>
+        </div>
+        <div class="opt" id="cam-row">
+          <span id="cam-state">카메라: 아직 확인 안 했어요</span>
+          <button id="btn-cam" class="small">카메라 테스트</button>
+        </div>
+      </div>
+
+      <button id="btn-start" class="primary" disabled>곡을 선택하세요</button>
+      <p id="status" class="status"></p>
+      <p id="hint" class="hint"></p>
+    </section>
+
+    <!-- 게임 화면 -->
+    <section id="screen-game" class="screen">
+      <canvas id="game" width="960" height="540"></canvas>
+      <button id="btn-quit" class="quit">ESC 나가기</button>
+    </section>
+
+    <!-- 결과 화면 -->
+    <section id="screen-result" class="screen">
+      <h2 id="r-title"></h2>
+      <div id="r-grade">S</div>
+      <div id="r-score"></div>
+      <table id="r-table"></table>
+      <div class="row">
+        <button id="btn-retry" class="primary">다시 하기</button>
+        <button id="btn-menu">곡 선택으로</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 웹캠 입력용 (화면에는 게임 캔버스 안에 그려집니다) -->
+  <video id="cam" playsinline muted></video>
+
+  <script src="songs.js"></script>
+  <script src="pose.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
